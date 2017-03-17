@@ -87,10 +87,10 @@ function codemodule(code, line)
 
     # ignore everything in square brackets, because of the ambiguity
     # with `end` indexing
-    if Tokens.kind(t) == Tokens.LSQUARE
+    if Tokens.kind(t) in (Tokens.LSQUARE,Tokens.LPAREN)
       n_brackets += 1
     elseif n_brackets > 0
-      if Tokens.kind(t) == Tokens.RSQUARE
+      if Tokens.kind(t) in (Tokens.RSQUARE,Tokens.RPAREN)
         n_brackets -= 1
       end
     elseif Tokens.exactkind(t) in MODULE_STARTERS  # new module
